@@ -1,8 +1,8 @@
 resource "aws_vpc" "vnet_tf" {
     count = length(var.cidr)
-    cidr_block = var.cidr
+    cidr_block = var.cidr[count.index]
     tags = {
-      "Name" = "var.vpc_nm[count.index]"
+      "Name" = var.vpc_nm[count.index]
     }
     }
 resource "aws_subnet" "subnets" {
@@ -11,7 +11,7 @@ resource "aws_subnet" "subnets" {
     vpc_id = aws_vpc.vnet_tf[0].id
     availability_zone = var.subnet_az[count.index]
     tags = {
-      "Name" = "var.subnet_nm[count.index]"
+      "Name" = var.subnet_nm[count.index]
     }
 }
 resource "aws_subnet" "subnet2" {
@@ -20,6 +20,6 @@ resource "aws_subnet" "subnet2" {
     vpc_id = aws_vpc.vnet_tf[1].id
     availability_zone = var.subnet_az[count.index]
     tags = {
-      "Name" = "var.subnet_nm[count.index]"
+      "Name" = var.subnet_nm[count.index]
     }
 }
