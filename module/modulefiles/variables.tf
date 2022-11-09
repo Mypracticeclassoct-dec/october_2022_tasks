@@ -1,7 +1,11 @@
+variable "region" {
+  type=string
+  description = "This is the region of the provider"
+}
 variable "cidr" {
     type = string
     default = "10.10.0.0/16"
-    desdescription = "This is the cidr of the vpc"  
+    description = "This is the cidr of the vpc"  
 }
 variable "subnet_az" {
     type = list(string)
